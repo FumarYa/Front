@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useFetch } from "../UseFetch/index";
-import Imagen from "../../images/Imagen17.png";
+
 
 export const ProductosLista = () => {
     const [state, fetchProductos] = useFetch();
@@ -30,13 +30,13 @@ export const ProductosLista = () => {
                       <div className="producto" key={producto.id}>
                           <a href="#">
                               <div className="producto_img">
-                                  <img src={producto.imagen} alt={producto.title} />
+                                  <img src={producto.imagen} alt={producto.title} width= "100" height="250"/>
                               </div>
                           </a>
                           <div className="producto_footer">
                               <h1>{producto.title}</h1>
                               <p>{producto.marca}</p>
-                              <p className="price">{producto.precio}</p>
+                              <p className="price">{producto.precio}€</p>
                               <p>{producto.tipo}</p>
                           </div>
                           <div className="buttom">
