@@ -1,20 +1,21 @@
 import React from "react";
 import Fumar from "../../images/fumarya.png";
+import { Link } from "react-router-dom";
 
 export const Header = () =>{
     return(
         <header>
-            <a href="#">
+            <Link to="/">
                 <div className="logo">
                     <img src={Fumar} alt="logo" width="150px"></img>
                 </div>
-            </a>
+            </Link>
             <ul>
                 <li>
-                    <a href="#">INICIO</a>
+                    <Link to="/">INICIO</Link>
                 </li>
                 <li>
-                    <a href="#">Productos</a>
+                    <Link to="/productos">Productos</Link>
                 </li>
             </ul>
             <div className="cart">

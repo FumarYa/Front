@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useFetch } from "../useFetch";
+import { useFetch } from "../UseFetch/index";
 import Imagen from "../../images/Imagen17.png";
 
 export const ProductosLista = () => {
@@ -22,120 +22,32 @@ export const ProductosLista = () => {
       return <div>Fallo recuperando los productos</div>;
      }
      if (state.isSuccess) {
-   
-  return (
-    <>
-      {/* Ayuda a que no retorne componentes padre solo a componentes hijo */}
-      <h1 className="title">PRODUCTOS</h1>
-      <div className="productos">
-        <div className="producto">
-          <a href="#">
-            <div className="producto_img">
-              <img src={Imagen} alt="" />
-            </div>
-          </a>
-          <div className="producto_footer">
-            <h1> Title </h1>
-            <p> Marca </p>
-            <p className="price">Precio</p>
-            <p> Tipo </p>
-          </div>
-          <div className="buttom">
-            <button className="btn">
-                Añadir al carrito
-            </button>
-            <a href="#" className="btn">
-                Vista
-            </a>
-            </div>
-          </div>
-          <div className="producto">
-          <a href="#">
-            <div className="producto_img">
-              <img src={Imagen} alt="" />
-            </div>
-          </a>
-          <div className="producto_footer">
-            <h1> Title </h1>
-            <p> Marca </p>
-            <p className="price">Precio</p>
-            <p> Tipo </p>
-          </div>
-          <div className="buttom">
-            <button className="btn">
-                Añadir al carrito
-            </button>
-            <a href="#" className="btn">
-                Vista
-            </a>
-            </div>
-          </div>
-          <div className="producto">
-          <a href="#">
-            <div className="producto_img">
-              <img src={Imagen} alt="" />
-            </div>
-          </a>
-          <div className="producto_footer">
-            <h1> Title </h1>
-            <p> Marca </p>
-            <p className="price">Precio</p>
-            <p> Tipo </p>
-          </div>
-          <div className="buttom">
-            <button className="btn">
-                Añadir al carrito
-            </button>
-            <a href="#" className="btn">
-                Vista
-            </a>
-            </div>
-          </div>
-          <div className="producto">
-          <a href="#">
-            <div className="producto_img">
-              <img src={Imagen} alt="" />
-            </div>
-          </a>
-          <div className="producto_footer">
-            <h1> Title </h1>
-            <p> Marca </p>
-            <p className="price">Precio</p>
-            <p> Tipo </p>
-          </div>
-          <div className="buttom">
-            <button className="btn">
-                Añadir al carrito
-            </button>
-            <a href="#" className="btn">
-                Vista
-            </a>
-            </div>
-          </div>
-          <div className="producto">
-          <a href="#">
-            <div className="producto_img">
-              <img src={Imagen} alt="" />
-            </div>
-          </a>
-          <div className="producto_footer">
-            <h1> Title </h1>
-            <p> Marca </p>
-            <p className="price">Precio</p>
-            <p> Tipo </p>
-          </div>
-          <div className="buttom">
-            <button className="btn">
-                Añadir al carrito
-            </button>
-            <a href="#" className="btn">
-                Vista
-            </a>
-            </div>
-          </div>
-        </div>
-    </>
-  );
-     }
+      return (
+          <>
+              <h1 className="title">PRODUCTOS</h1>
+              <div className="productos">
+                  {state.data.map((producto) => (
+                      <div className="producto" key={producto.id}>
+                          <a href="#">
+                              <div className="producto_img">
+                                  <img src={producto.imagen} alt={producto.title} />
+                              </div>
+                          </a>
+                          <div className="producto_footer">
+                              <h1>{producto.title}</h1>
+                              <p>{producto.marca}</p>
+                              <p className="price">{producto.precio}</p>
+                              <p>{producto.tipo}</p>
+                          </div>
+                          <div className="buttom">
+                              <button className="btn">Añadir al carrito</button>
+                              <a href="#" className="btn">Vista</a>
+                          </div>
+                      </div>
+                  ))}
+              </div>
+          </>
+      );
+  }
      return null;
 };

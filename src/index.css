@@ -94,6 +94,22 @@ header .cart span{
   background-color: rgb(250, 13, 13);
 }
 
+/*----------------INICIO----------------*/
+.inicio{
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 9rem;
+}
+
+.inicio h1{
+  font-size: 2rem;
+  color: #08a05c;
+}
+
+.inicio img{
+  width: 100%;
+}
+
 /*----------------PRODUCTOS----------------*/
 .title{
   font-size: 2rem;
