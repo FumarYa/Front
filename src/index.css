@@ -357,7 +357,79 @@ header .cart span{
   color: white;
 }
 
+/*----------------DETALLES PRODUCTO----------------*/
+.detalles{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16rem 1rem 1rem 1rem;
+  box-sizing: border-box;
+}
 
+.detalles h2{
+  font-size: 3rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: Helvetica, sans-serif;
+  margin-right: -2rem;
+  margin-top: -6rem;
+}
+
+.detalles .precio{
+  font-size: 3rem;
+  width: 100%;
+  color: #08a05c;
+}
+.detalles button{
+  max-width: 300px;
+  margin: 1rem 0 0 0;
+  padding: 1rem 1rem;
+  border: none;
+  outline: 0;
+  background-color: #3033d3;
+  font-size: 1.6rem;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.detalles img{
+  max-height: 500px;
+  object-fit: contain;
+  margin-top: -1rem;
+  z-index: -1;
+}
+
+.detalles .descripcion{
+  font-size: 1.1rem;
+  max-width: 1300px;
+  width: 100%;
+  letter-spacing: 1px;
+  color: #5f5d5d;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+.detalles.descripcion b{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #30333a;
+}
+
+.relacionados{
+  text-align: center;
+  background-color: #2e2e2e;
+  color: white;
+  max-width: 350px;
+  width: 100%;
+  margin: 2rem auto;
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+}
 /*----------------MEDIA----------------*/
 @media only screen and (max-width: 1000px){
   .carrito_item{
