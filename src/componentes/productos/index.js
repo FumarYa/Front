@@ -1,32 +1,21 @@
-import React, { useEffect } from "react";
-import { useFetch } from "../UseFetch/index";
-
+import React, { useContext } from "react";
+import { DataContext } from '../../context/Dataprovider'
 
 export const ProductosLista = () => {
-    const [state, fetchProductos] = useFetch();
+    const { productos, addCarrito } = useContext(DataContext);
 
-    useEffect(
-      function () {
-        fetchProductos({
-          url: "http://localhost:4000/api/producto/all",
-          method: "GET",
-      });
-      },
-      [fetchProductos]
-     );
-  
-    if (state.isLoading) {
+    if (productos.isLoading) {
        return <div>Cargando productos .. </div>;
     }
-     if (state.isFailed) {
+    if (productos.isFailed) {
       return <div>Fallo recuperando los productos</div>;
-     }
-     if (state.isSuccess) {
+    }
+    if (productos.isSuccess) {
       return (
           <>
               <h1 className="title">PRODUCTOS</h1>
               <div className="productos">
-                  {state.data.map((producto) => (
+                  {productos.data.map((producto) => (
                       <div className="producto" key={producto.id}>
                           <a href="#">
                               <div className="producto_img">
@@ -40,7 +29,7 @@ export const ProductosLista = () => {
                               <p>{producto.tipo}</p>
                           </div>
                           <div className="buttom">
-                              <button className="btn">Añadir al carrito</button>
+                              <button className="btn" onClick={()=>addCarrito(producto.id)}>Añadir al carrito</button>
                               <a href="#" className="btn">Vista</a>
                           </div>
                       </div>
@@ -48,6 +37,6 @@ export const ProductosLista = () => {
               </div>
           </>
       );
-  }
-     return null;
+    }
+    return null;
 };

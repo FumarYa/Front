@@ -2,6 +2,7 @@ import { useCallback, useState }from "react";
 import { sendRequest } from "../SendRequest/index";
 
 export const useFetch = () =>{
+
   const[fetchState,setFetchState]= useState({
     isLoading: false,
     isSuccess: false,
