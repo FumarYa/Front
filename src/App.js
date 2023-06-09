@@ -1,22 +1,27 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { Header } from './componentes/Header';
 import 'boxicons';
 import { BrowserRouter as Router} from "react-router-dom"
 import {Paginas} from "./componentes/Paginas"; 
 import { Carrito } from './componentes/Carrito';
-import { Dataprovider } from './context/Dataprovider';
+import { Dataprovider,DataContext } from './context/Dataprovider';
+import { CookieBanner } from './componentes/CookieBanner';
+
+
 
 function App() {
+  const {acceptCookies,cookiesAccepted} = useContext(DataContext);
   return (
-    <Dataprovider>
+  <Dataprovider>
     <div className="App">
+    {!cookiesAccepted && <CookieBanner acceptCookies={acceptCookies} />}
       <Router>
       <Header />
       <Carrito />  
       <Paginas />
       </Router>
     </div>
-    </Dataprovider>
+  </Dataprovider>
   );
 }
 

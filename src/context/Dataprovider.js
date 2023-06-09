@@ -8,6 +8,7 @@ export const Dataprovider = ({ children }) => {
     const [state, fetchProductos] = useFetch();
     const[carrito,setCarrito] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [cookiesAccepted, setCookiesAccepted] = useState(false);
 
     useEffect(
       function () {
@@ -19,6 +20,23 @@ export const Dataprovider = ({ children }) => {
       },
       [fetchProductos]
     );
+
+    
+    useEffect(() => {
+      const accepted = localStorage.getItem('cookiesAccepted');
+      if (accepted) {
+        console.log('Setting cookiesAccepted to true from localStorage');
+        setCookiesAccepted(false);
+      }
+    }, []);
+
+
+    // Guarda la aceptación de cookies del usuario en localStorage
+    const acceptCookies = () => {
+    localStorage.setItem('cookiesAccepted', true);
+    setCookiesAccepted(true);
+    console.log(cookiesAccepted)
+  };
 
     const incrementarCantidad = (id) => {
       setCarrito(
@@ -82,6 +100,8 @@ export const Dataprovider = ({ children }) => {
         incrementarCantidad: incrementarCantidad,
         decrementarCantidad: decrementarCantidad,
         obtenerTotal: obtenerTotal,
+        acceptCookies: acceptCookies,
+        cookiesAccepted: cookiesAccepted,
         loading: [loading, setLoading], // añade loading al contexto
     }
   
