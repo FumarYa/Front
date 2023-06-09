@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { DataContext } from '../../context/Dataprovider'
+import { Link } from "react-router-dom";
 
 export const ProductosLista = () => {
     const { productos, addCarrito } = useContext(DataContext);
@@ -17,11 +18,11 @@ export const ProductosLista = () => {
               <div className="productos">
                   {productos.data.map((producto) => (
                       <div className="producto" key={producto.id}>
-                          <a href="#">
+                          <Link to={`/productos/${producto.id}`}>
                               <div className="producto_img">
                                   <img src={producto.imagen} alt={producto.title} width= "100" height="250"/>
                               </div>
-                          </a>
+                          </Link>
                           <div className="producto_footer">
                               <h1>{producto.title}</h1>
                               <p>{producto.marca}</p>
@@ -30,7 +31,7 @@ export const ProductosLista = () => {
                           </div>
                           <div className="buttom">
                               <button className="btn" onClick={()=>addCarrito(producto.id)}>Añadir al carrito</button>
-                              <a href="#" className="btn">Vista</a>
+                              <Link to={`/productos/${producto.id}`} className="btn">Vista</Link>
                           </div>
                       </div>
                   ))}
