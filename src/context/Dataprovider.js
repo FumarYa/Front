@@ -4,7 +4,8 @@ import { useFetch } from '../componentes/UseFetch/index';
 export const DataContext = createContext();
 
 export const Dataprovider = ({ children }) => {
-    const [menu,setMenu] = useState(false);
+    const [menuCarrito,setMenuCarrito] = useState(false);
+    const [menuLogin,setMenuLogin] = useState(false);
     const [state, fetchProductos] = useFetch();
     const[carrito,setCarrito] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -35,7 +36,6 @@ export const Dataprovider = ({ children }) => {
     const acceptCookies = () => {
     localStorage.setItem('cookiesAccepted', true);
     setCookiesAccepted(true);
-    console.log(cookiesAccepted)
   };
 
     const incrementarCantidad = (id) => {
@@ -93,7 +93,8 @@ export const Dataprovider = ({ children }) => {
     }, [carrito, loading]);
 
     const value = {
-        menu: [menu,setMenu],
+        menuCarrito: [menuCarrito,setMenuCarrito],
+        menuLogin: [menuLogin,setMenuLogin],
         productos: state, // Aquí añadimos los productos al contexto.
         carrito: [carrito,setCarrito],
         addCarrito: addCarrito,
