@@ -25,7 +25,7 @@ code {
 
 /*----------------HEADER----------------*/
 header{
-  width: 97%;
+  width: 100%;
   min-height: 100px;
   max-width: 1530px;
   overflow: hidden;
@@ -429,6 +429,38 @@ header .cart span{
   letter-spacing: 3px;
   text-transform: uppercase;
 
+}
+
+/*----------------COOKIE BANNER----------------*/
+.cookie-banner {
+  max-width: 1550px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: #e41414;
+  color: white;
+  text-align: center;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.cookie-banner button {
+  color: white;
+  background-color: #08a05c;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 /*----------------MEDIA----------------*/
 @media only screen and (max-width: 1000px){
