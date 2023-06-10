@@ -4,7 +4,7 @@ import { DataContext } from '../../context/Dataprovider'
 
 export const Carrito = () => {
     const value = useContext(DataContext);
-    const [menu, setMenu] = value.menu;
+    const [menuCarrito, setMenuCarrito] = value.menuCarrito;
     const [carrito,setCarrito] = value.carrito;
     const incrementarCantidad = value.incrementarCantidad;
     const decrementarCantidad = value.decrementarCantidad;
@@ -17,11 +17,11 @@ export const Carrito = () => {
     
     
     const tooglefalse = () =>{
-        setMenu(false);
+        setMenuCarrito(false);
     }
 
-    const show1 = menu ? "carritos show" : "carritos";
-    const show2 = menu ? "carrito show" : "carrito";
+    const show1 = menuCarrito ? "carritos show" : "carritos";
+    const show2 = menuCarrito ? "carrito show" : "carrito";
 
     const removeProducto= (id) =>{
         if(window.confirm("¿Quieres borrar este producto?")){

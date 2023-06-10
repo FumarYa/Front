@@ -4,11 +4,14 @@ import { useFetch } from '../componentes/UseFetch/index';
 export const DataContext = createContext();
 
 export const Dataprovider = ({ children }) => {
-    const [menu,setMenu] = useState(false);
+    const [menuCarrito,setMenuCarrito] = useState(false);
+    const [menuLogin,setMenuLogin] = useState(false);
     const [state, fetchProductos] = useFetch();
     const[carrito,setCarrito] = useState([]);
     const [loading, setLoading] = useState(true);
     const [cookiesAccepted, setCookiesAccepted] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [username, setUsername] = useState();
 
     useEffect(
       function () {
@@ -35,9 +38,9 @@ export const Dataprovider = ({ children }) => {
     const acceptCookies = () => {
     localStorage.setItem('cookiesAccepted', true);
     setCookiesAccepted(true);
-    console.log(cookiesAccepted)
   };
 
+    //operaciones del carrito
     const incrementarCantidad = (id) => {
       setCarrito(
         carrito.map(item =>
@@ -60,24 +63,30 @@ export const Dataprovider = ({ children }) => {
       return carrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
     };
     
-
+    //añade el producto al carrito si el usuario esta autenticado
     const addCarrito = (id) => {
-      const check = carrito.every((item) => {
-        return item.id !== id;
-      });
-      if (check) {
-        const data = state.data
-          .filter((producto) => {
-            return producto.id === id;
-          })
-          .map((producto) => {
-            return { ...producto, cantidad: 1 }; // Añade propiedad cantidad
-          });
-        setCarrito([...carrito, ...data]);
+      if (isAuthenticated) {
+        const check = carrito.every((item) => {
+          return item.id !== id;
+        });
+        if (check) {
+          const data = state.data
+            .filter((producto) => {
+              return producto.id === id;
+            })
+            .map((producto) => {
+              return { ...producto, cantidad: 1 };
+            });
+          setCarrito([...carrito, ...data]);
+        } else {
+          alert("El producto ya se ha añadido al carrito.");
+        }
       } else {
-        alert("El producto ya se ha añadido al carrito.");
+        alert("Debes iniciar sesión para agregar productos al carrito.");
       }
     };
+
+    //carga el carrito desde el localstorage
     useEffect(() =>{
       const dataCarrito = JSON.parse(localStorage.getItem('dataCarrito'));
       if(dataCarrito){
@@ -86,14 +95,26 @@ export const Dataprovider = ({ children }) => {
       setLoading(false)
     }, [state])
 
+
+    //Guarda el carrito en el localStorage
     useEffect(() => {
       if (!loading && carrito) {
         localStorage.setItem('dataCarrito', JSON.stringify(carrito));
       }
     }, [carrito, loading]);
 
+    //Limpia el carrito cuando se cambia de usuario.
+    useEffect(() => {
+      if (!isAuthenticated) {
+        setCarrito([]);
+        localStorage.removeItem('dataCarrito');
+      }
+    }, [isAuthenticated]);
+
+    //Valores del contexto
     const value = {
-        menu: [menu,setMenu],
+        menuCarrito: [menuCarrito,setMenuCarrito],
+        menuLogin: [menuLogin,setMenuLogin],
         productos: state, // Aquí añadimos los productos al contexto.
         carrito: [carrito,setCarrito],
         addCarrito: addCarrito,
@@ -102,6 +123,8 @@ export const Dataprovider = ({ children }) => {
         obtenerTotal: obtenerTotal,
         acceptCookies: acceptCookies,
         cookiesAccepted: cookiesAccepted,
+        isAuthenticated: [isAuthenticated, setIsAuthenticated],
+        username: [username, setUsername],
         loading: [loading, setLoading], // añade loading al contexto
     }
   

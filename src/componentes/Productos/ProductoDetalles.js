@@ -51,7 +51,7 @@ export const ProductoDetalles = () => {
       <div className="productos">
         {productos ? (
           productos.map((producto) =>
-            detalle.tipo === producto.tipo ? (
+            detalle.tipo === producto.tipo && detalle.id !== producto.id ? (
               <div className="producto" key={producto.id}>
                 <Link to={`/productos/${producto.id}`}>
                   <div className="producto_img">

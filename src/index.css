@@ -51,6 +51,7 @@ a:hover{
 
 li{
   list-style: none;
+  font-size: 1.25rem;
 }
 
 header ul{
@@ -93,6 +94,27 @@ header .cart span{
   font-weight: 700;
   background-color: rgb(250, 13, 13);
 }
+
+header .log{
+  position: relative;
+  cursor: pointer;
+} 
+
+header .log box-icon{
+  width: 45px;
+  height: 45px;
+}´
+
+header .logout{
+  position: relative;
+  cursor: pointer;
+} 
+
+header .logout box-icon{
+  width: 45px;
+  height: 45px;
+}
+
 
 /*----------------INICIO----------------*/
 .inicio{
@@ -430,6 +452,187 @@ header .cart span{
   text-transform: uppercase;
 
 }
+ 
+/*----------------LOGIN----------------*/
+.login{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 300ms ease-in-out;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: 2;
+  padding-bottom: 5rem;
+  visibility: hidden;
+}
+
+.login2{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale (1);
+  width: 25%;
+  height: 70%; 
+  border-radius: 8px;
+  overflow-x: scroll;
+  transition: all 300ms ease-in-out;
+  background-color: white;
+  opacity: 0; 
+  visibility: hidden;
+  padding: 20px; 
+  box-sizing: border-box; 
+}
+
+.login2 label:first-of-type {
+  margin-top: 50px;
+}
+
+.login.show{
+  visibility: visible;
+}
+
+.login2.show{
+  transform: translate(-50%, -50%) scale(1.1);
+  scale: (1.1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.login2 label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login2 input{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login2 button {
+  padding: 10px 20px;
+  background-color: #08a05c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.login2 a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #08a05c;
+  text-decoration: none;
+}
+
+.login2 a:hover {
+  text-decoration: underline;
+}
+
+.login2 .login_close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.login2 .google{
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #08a05c;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.login2 .google:hover {
+  text-decoration: underline;
+}
+
+/*----------------REGISTRO----------------*/
+.registros{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
+  min-height: 100vh;
+}
+.registros h2 {
+  color: #08a05c;  /* Cambia el color del texto */
+  font-size: 2.5rem;  /* Cambia el tamaño de la fuente */
+  text-align: center;  /* Centra el texto */
+  padding: 10px 0;  /* Agrega un poco de relleno arriba y abajo */
+} 
+
+.registro{
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+.registro_nombre,
+.registro_contrasena,
+.registro_telefono,
+.registro_correo,
+.registro_fechaN{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.registro_nombre label,
+.registro_contrasena label,
+.registro_telefono label,
+.registro_correo label,
+.registro_fechaN label{
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+
+.registro_nombre input,
+.registro_contrasena input,
+.registro_telefono input,
+.registro_correo input,
+.registro_fechaN input{
+  padding: .5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.registro button{
+  width: 100%;
+  padding: .5rem 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #08a05c;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registro button:hover{
+  background-color: #0f5c39;
+}
+
+.registro p{
+  color: #ff0000;
+  margin-bottom: 1rem;
+}
 
 /*----------------COOKIE BANNER----------------*/
 .cookie-banner {
@@ -486,6 +689,36 @@ header .cart span{
 @media only screen and (max-width: 600px){
   header ul{
     display: none;
+  }
+
+  .registro_nombre,
+  .registro_contrasena,
+  .registro_telefono,
+  .registro_correo,
+  .registro_fechaN {
+    flex-direction: column;
+    margin-bottom: 2rem; /* Aumenta el espacio entre los campos */
+  }
+
+  .registro_nombre label,
+  .registro_contrasena label,
+  .registro_telefono label,
+  .registro_correo label,
+  .registro_fechaN label {
+    font-size: 1.2rem; /* Aumenta el tamaño de la fuente de los labels */
+    text-align: center; /* Centra el texto en el label */
+  }
+
+  .registro_nombre input,
+  .registro_contrasena input,
+  .registro_telefono input,
+  .registro_correo input,
+  .registro_fechaN input {
+    width: 100%; /* Ajusta el ancho de los inputs al 100% */
+  }
+
+  .registro button {
+    margin-top: 1rem; /* Agrega un margen superior al botón */
   }
 }
 

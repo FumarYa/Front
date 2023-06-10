@@ -6,6 +6,7 @@ import {Paginas} from "./componentes/Paginas";
 import { Carrito } from './componentes/Carrito';
 import { Dataprovider,DataContext } from './context/Dataprovider';
 import { CookieBanner } from './componentes/CookieBanner';
+import { Login } from './componentes/Login';
 
 
 
@@ -17,7 +18,8 @@ function App() {
     {!cookiesAccepted && <CookieBanner acceptCookies={acceptCookies} />}
       <Router>
       <Header />
-      <Carrito />  
+      <Carrito /> 
+      <Login />
       <Paginas />
       </Router>
     </div>
