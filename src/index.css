@@ -543,6 +543,20 @@ header .logout box-icon{
   cursor: pointer;
 }
 
+.login2 .google{
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #08a05c;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.login2 .google:hover {
+  text-decoration: underline;
+}
+
 /*----------------COOKIE BANNER----------------*/
 .cookie-banner {
   max-width: 1550px;

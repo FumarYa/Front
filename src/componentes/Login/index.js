@@ -1,15 +1,17 @@
 import React, { useState,useContext } from 'react';
 import { DataContext } from '../../context/Dataprovider';
-import { Link } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
+import { Link, useNavigate  } from 'react-router-dom';
+
 
 
 export const Login = () => {
     const value = useContext(DataContext);
     const [menuLogin, setMenuLogin] = value.menuLogin;
-    const [nombre, setNombre] = useState();
-    const [contrasena, setContrasena] = useState();
-    const{loginWithRedirect} = useAuth0();
+    const [nombre, setNombre] = useState("");
+    const [contrasena, setContrasena] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = value.isAuthenticated;
+    const [username, setUsername] = value.username;
+    const navigate = useNavigate();
 
 
     const show1 = menuLogin ? "login show" : "login";
@@ -19,24 +21,32 @@ export const Login = () => {
         setMenuLogin(false);
     }
 
-  const iniciarSesion = () => {
-    fetch('http://localhost:4000/usuarios/all', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ nombre, contrasena })
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error: ' + response.statusText);
-        }
+    const iniciarSesion = () => {
+      fetch('http://localhost:4000/api/usuarios/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre, contrasena })
       })
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
-  };
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Error: ' + response.statusText);
+          }
+        })
+        .then(data => {
+          if(data === "El Usuario con su contraseña es correcta") {
+            setIsAuthenticated(true);
+            setUsername(nombre);
+            navigate("/");
+            setMenuLogin(false);
+          }
+        })
+        
+        .catch(error => console.error('Error:', error));
+    };
 
   return (
     <div className={show1}>
@@ -48,10 +58,12 @@ export const Login = () => {
             <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
             <label>Contraseña:</label>
             <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} />
-            <button onClick={iniciarSesion}>Iniciar Sesión</button>
+
+
+            <button onClick={() => iniciarSesion()}>Iniciar Sesión</button>
+
             <br/><br/>
-            <p >Inicia sesion con google</p>
-            <br/><br/>
+
             <Link to="/registro">
             <p onClick={tooglefalse}>Registrese aqui</p>
             </Link>
