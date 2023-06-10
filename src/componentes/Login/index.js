@@ -65,7 +65,7 @@ export const Login = () => {
             <br/><br/>
 
             <Link to="/registro">
-            <p onClick={tooglefalse}>Registrese aqui</p>
+              <p onClick={tooglefalse}>Registrese aqui</p>
             </Link>
         </div>
     </div>

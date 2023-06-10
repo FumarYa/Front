@@ -557,6 +557,83 @@ header .logout box-icon{
   text-decoration: underline;
 }
 
+/*----------------REGISTRO----------------*/
+.registros{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
+  min-height: 100vh;
+}
+.registros h2 {
+  color: #08a05c;  /* Cambia el color del texto */
+  font-size: 2.5rem;  /* Cambia el tamaño de la fuente */
+  text-align: center;  /* Centra el texto */
+  padding: 10px 0;  /* Agrega un poco de relleno arriba y abajo */
+} 
+
+.registro{
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+.registro_nombre,
+.registro_contrasena,
+.registro_telefono,
+.registro_correo,
+.registro_fechaN{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.registro_nombre label,
+.registro_contrasena label,
+.registro_telefono label,
+.registro_correo label,
+.registro_fechaN label{
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+
+.registro_nombre input,
+.registro_contrasena input,
+.registro_telefono input,
+.registro_correo input,
+.registro_fechaN input{
+  padding: .5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.registro button{
+  width: 100%;
+  padding: .5rem 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #08a05c;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registro button:hover{
+  background-color: #0f5c39;
+}
+
+.registro p{
+  color: #ff0000;
+  margin-bottom: 1rem;
+}
+
 /*----------------COOKIE BANNER----------------*/
 .cookie-banner {
   max-width: 1550px;
@@ -612,6 +689,36 @@ header .logout box-icon{
 @media only screen and (max-width: 600px){
   header ul{
     display: none;
+  }
+
+  .registro_nombre,
+  .registro_contrasena,
+  .registro_telefono,
+  .registro_correo,
+  .registro_fechaN {
+    flex-direction: column;
+    margin-bottom: 2rem; /* Aumenta el espacio entre los campos */
+  }
+
+  .registro_nombre label,
+  .registro_contrasena label,
+  .registro_telefono label,
+  .registro_correo label,
+  .registro_fechaN label {
+    font-size: 1.2rem; /* Aumenta el tamaño de la fuente de los labels */
+    text-align: center; /* Centra el texto en el label */
+  }
+
+  .registro_nombre input,
+  .registro_contrasena input,
+  .registro_telefono input,
+  .registro_correo input,
+  .registro_fechaN input {
+    width: 100%; /* Ajusta el ancho de los inputs al 100% */
+  }
+
+  .registro button {
+    margin-top: 1rem; /* Agrega un margen superior al botón */
   }
 }
 
