@@ -9,9 +9,8 @@ import { Usuarios } from "./Usuarios";
 import { Ventas } from "./Ventas";
 import { SettingProduct } from "./SettingProduct";
 import { Checkout } from "./Checkout";
-import { CheckoutForm } from "./CheckoutForm";
 import { DataContext } from "../context/Dataprovider";
-import { ApartadoLegal } from "./ApardoLegal";
+import { ApartadoLegal } from "./ApartadoLegal";
 
 export const Paginas = () => {
     const value = useContext(DataContext);
@@ -25,7 +24,6 @@ export const Paginas = () => {
                 <Route path="/productos/:id" element={<ProductoDetalles />}></Route>
                 <Route path="/registro" element={<Registro />}></Route>
                 <Route path="/checkout" element={<Checkout />} />
-                <Route path="/checkoutform" element={<CheckoutForm />} />
                 <Route path="/apartadolegal" element={<ApartadoLegal />}/>
 
                 {role === 'Admin' && 

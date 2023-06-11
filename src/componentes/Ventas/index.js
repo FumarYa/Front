@@ -31,7 +31,7 @@ export const Ventas = () => {
         {ventas.map((venta) => (
           <tr key={venta.id}>
             <td>{venta.id}</td>
-            <td>{venta.idUsuario}</td>
+            <td>{venta.idusuario}</td>
             <td>{venta.direccion}</td>
             <td>{venta.municipio}</td>
             <td>{venta.codigoPostal}</td>

@@ -6,7 +6,7 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-        <p>© {year} Nombre de tu página. Todos los derechos reservados.</p>
+        <p>© {year} FumarYa. Todos los derechos reservados.</p>
         <Link to="/apartadolegal" style={{color: '#007bff'}}>Apartado Legal</Link>
     </footer>
   );
