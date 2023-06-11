@@ -7,6 +7,7 @@ import { Carrito } from './componentes/Carrito';
 import { Dataprovider,DataContext } from './context/Dataprovider';
 import { CookieBanner } from './componentes/CookieBanner';
 import { Login } from './componentes/Login';
+import Footer from './componentes/Footer';
 
 
 
@@ -23,7 +24,10 @@ function App() {
           <Header />
           <Carrito /> 
           <Login />
-          <Paginas />
+          <div className="Content">
+            <Paginas />
+          </div>
+          <Footer />
         </Router>
       </div>
     </Dataprovider>

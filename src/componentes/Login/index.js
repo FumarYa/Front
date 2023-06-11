@@ -12,6 +12,7 @@ export const Login = () => {
     const [isAuthenticated, setIsAuthenticated] = value.isAuthenticated;
     const [username, setUsername] = value.username;
     const [role, setRole] = value.role;
+    const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
 
 
@@ -42,6 +43,7 @@ export const Login = () => {
           if(data === "El Usuario con su contraseña es correcta") {
             setIsAuthenticated(true);
             setUsername(nombre);
+            setLoginError("");
             
     
             // Si el inicio de sesión es exitoso, realiza una segunda solicitud para obtener el rol del usuario
@@ -60,6 +62,8 @@ export const Login = () => {
               });
             navigate("/");
             setMenuLogin(false);
+          }else{
+            setLoginError("Usuario y/o contraseña incorrectos");
           }
         })
         .catch(error => console.error('Error:', error));
@@ -76,7 +80,8 @@ export const Login = () => {
             <label>Contraseña:</label>
             <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} />
 
-
+            {loginError && <div className="error">{loginError}</div>}
+            <br/>
             <button onClick={() => iniciarSesion()}>Iniciar Sesión</button>
 
             <br/><br/>
