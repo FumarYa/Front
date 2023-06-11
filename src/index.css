@@ -13,19 +13,25 @@ code {
     monospace;
 }
 
-.App{
+
+.App {
   max-width: 1550px;
   width: 100%;
   min-height: 100vh;
   margin: 0 auto;
   box-shadow: 0 5px 6px #08a05ca4;
-  padding: 0 15px;
+  padding: 0 15px 100px 15px; /* El cuarto valor es el padding-bottom */
   box-sizing: border-box;
+}
+
+
+.Content {
+  flex: 1 0 auto;
 }
 
 /*----------------HEADER----------------*/
 header{
-  width: 97%;
+  width: 100%;
   min-height: 100px;
   max-width: 1530px;
   overflow: hidden;
@@ -51,7 +57,9 @@ a:hover{
 
 li{
   list-style: none;
+  font-size: 1.25rem;
 }
+
 
 header ul{
   display: flex;
@@ -94,11 +102,33 @@ header .cart span{
   background-color: rgb(250, 13, 13);
 }
 
+header .log{
+  position: relative;
+  cursor: pointer;
+} 
+
+header .log box-icon{
+  width: 45px;
+  height: 45px;
+}´
+
+header .logout{
+  position: relative;
+  cursor: pointer;
+} 
+
+header .logout box-icon{
+  width: 45px;
+  height: 45px;
+}
+
+
 /*----------------INICIO----------------*/
 .inicio{
   width: 100%;
   margin: 0 auto;
   padding-top: 9rem;
+  margin-bottom: 100px; /* Añade un margen inferior a este elemento */
 }
 
 .inicio h1{
@@ -115,6 +145,33 @@ header .cart span{
   font-size: 2rem;
   padding: 10rem 0 0 0;
   color: #08a05c;
+}
+
+.buscador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Para agregar espacio entre los elementos */
+}
+
+.buscar_texto {
+  font-size: 1rem;
+  width: 700px;
+  height: 50px;
+  border: 2px solid #08a05c;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 0 10px;
+}
+
+.buscar_btn {
+  border: none;
+  color: white;
+  background-color: #08a05c;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
 }
 
 .productos{
@@ -220,9 +277,762 @@ header .cart span{
   color: white;
 }
 
+/*----------------CARRITO----------------*/
+.carritos{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 300ms ease-in-out;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: 2;
+  padding-bottom: 5rem;
+  visibility: hidden;
+}
+
+.carrito{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale (1);
+  width: 60%;
+  height: 80%;
+  border-radius: 8px;
+  overflow-x: scroll;
+  transition: all 300ms ease-in-out;
+  background-color: white;
+  opacity: 0; 
+  visibility: hidden; 
+}
+
+.carrito h2{
+  text-align: center;
+  font-size: 2rem;
+}
+
+.carritos.show{
+  visibility: visible;
+}
+
+.carrito.show{
+  transform: translate(-50%, -50%) scale(1.1);
+  scale: (1.1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.carrito_close box-icon{
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transform: all 300ms ease-in-out;
+  margin: 3rem 0 0 2rem;
+}
+
+.carrito_close box-icon:hover{
+  fill: crimson;
+}
+
+.carrito_center{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.carrito_item{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr;
+  width: 80%;
+  margin: 2rem auto;
+  box-shadow: 0 1px 10px #08a05c;
+  border-radius: 5px;
+}
+
+.carrito_item img{
+  width: 10rem;
+}
+
+.carrito_item h3{
+  margin-top: 1.5rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  font-family: Helvetica, sans-serif;
+}
+
+.carrito_item .price{
+  color: #1a202c;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: start;
+  margin-left: -1rem;
+}
+
+.carrito_item box-icon{
+  fill: #08a05c;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-top: .3rem;
+}
+
+.carrito_item .cantidad{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.carrito_item .remove_item box-icon{
+  width: 60px;
+  height: 80px;
+  fill: crimson;
+  margin-top: 2rem;
+}
+
+.carrito_footer{
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.carrito_footer h3{
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.carrito_footer .btn{
+  display: inline-block;
+  padding: .3rem 1rem;
+  font-size: 1.2rem;
+  background-color: #08a05c;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.carrito_footer .btn:hover{
+  background-color: #0f5c39;
+  color: white;
+}
+
+/*----------------DETALLES PRODUCTO----------------*/
+.detalles{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16rem 1rem 1rem 1rem;
+  box-sizing: border-box;
+}
+
+.detalles h2{
+  font-size: 3rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: Helvetica, sans-serif;
+  margin-right: -2rem;
+  margin-top: -6rem;
+}
+
+.detalles .precio{
+  font-size: 3rem;
+  width: 100%;
+  color: #08a05c;
+}
+.detalles button{
+  max-width: 300px;
+  margin: 1rem 0 0 0;
+  padding: 1rem 1rem;
+  border: none;
+  outline: 0;
+  background-color: #3033d3;
+  font-size: 1.6rem;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.detalles img{
+  max-height: 500px;
+  object-fit: contain;
+  margin-top: -1rem;
+  z-index: -1;
+}
+
+.detalles .descripcion{
+  font-size: 1.1rem;
+  max-width: 1300px;
+  width: 100%;
+  letter-spacing: 1px;
+  color: #5f5d5d;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+.detalles.descripcion b{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #30333a;
+}
+
+.relacionados{
+  text-align: center;
+  background-color: #2e2e2e;
+  color: white;
+  max-width: 350px;
+  width: 100%;
+  margin: 2rem auto;
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+}
+ 
+/*----------------LOGIN----------------*/
+.login{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 300ms ease-in-out;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: 2;
+  padding-bottom: 5rem;
+  visibility: hidden;
+}
+
+.login2{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale (1);
+  width: 25%;
+  height: 70%; 
+  border-radius: 8px;
+  overflow-x: scroll;
+  transition: all 300ms ease-in-out;
+  background-color: white;
+  opacity: 0; 
+  visibility: hidden;
+  padding: 20px; 
+  box-sizing: border-box; 
+}
+
+.login2 label:first-of-type {
+  margin-top: 50px;
+}
+
+.login.show{
+  visibility: visible;
+}
+
+.login2.show{
+  transform: translate(-50%, -50%) scale(1.1);
+  scale: (1.1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.login2 label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login2 input{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login2 button {
+  padding: 10px 20px;
+  background-color: #08a05c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.login2 a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #08a05c;
+  text-decoration: none;
+}
+
+.login2 a:hover {
+  text-decoration: underline;
+}
+
+.login2 .login_close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.login2 .google{
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #08a05c;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.login2 .google:hover {
+  text-decoration: underline;
+}
+
+.error{
+  color: red;
+}
+
+/*----------------REGISTRO----------------*/
+.registros{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
+  min-height: 100vh;
+}
+.registros h2 {
+  color: #08a05c;  /* Cambia el color del texto */
+  font-size: 2.5rem;  /* Cambia el tamaño de la fuente */
+  text-align: center;  /* Centra el texto */
+  padding: 10px 0;  /* Agrega un poco de relleno arriba y abajo */
+} 
+
+.registro{
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+.registro_nombre,
+.registro_contrasena,
+.registro_telefono,
+.registro_correo,
+.registro_fechaN{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.registro_nombre label,
+.registro_contrasena label,
+.registro_telefono label,
+.registro_correo label,
+.registro_fechaN label{
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+
+.registro_nombre input,
+.registro_contrasena input,
+.registro_telefono input,
+.registro_correo input,
+.registro_fechaN input{
+  padding: .5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.registro button{
+  width: 100%;
+  padding: .5rem 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #08a05c;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registro button:hover{
+  background-color: #0f5c39;
+}
+
+.registro p{
+  color: #ff0000;
+  margin-bottom: 1rem;
+}
+
+/*----------------CONFIGURACIONES----------------*/
+.configs{
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 12rem;
+
+}
+
+.configs h1{
+  font-size: 2rem;
+  color: #08a05c;
+}
+
+/*----------------VENTAS----------------*/
+.ventas {
+  padding: 10rem 1rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.ventas .venta {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}
+
+.ventas .venta th,
+.ventas .venta td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.ventas .venta th {
+  background-color: #e41414;
+  color: white;
+}
+
+.ventas .venta tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/*----------------USUARIOS----------------*/
+.usuarios {
+  padding: 10rem 1rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.usuarios .usuario {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}
+
+.usuarios .usuario th,
+.usuarios .usuario td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.usuarios .usuario th {
+  background-color: #e41414;
+  color: white;
+}
+
+.usuarios .usuario tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.settings {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 12rem;
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem; /* Espacio entre los elementos */
+}
+
+.settings h2 {
+  font-size: 2rem;
+  color: #08a05c;
+  margin-bottom: 1rem;
+}
+
+.settings .anadir,
+.settings .eliminar {
+  width: 45%;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+.settings .anadir_form,
+.settings .delete_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings input {
+  padding: .5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+.settings button {
+  width: 100%;
+  padding: .5rem 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #08a05c;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.settings button:hover {
+  background-color: #0f5c39;
+}
+
+/*----------------CHECKOUT----------------*/
+.checkout {
+  padding: 5rem 1rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 1px 10px 10px 2px rgba(0, 0, 0, .2);
+  border: 6px solid transparent;
+  border-radius: 5px;
+  max-width: 700px;
+}
+
+.checkout h2 {
+  font-size: 2rem;
+  color: #08a05c;
+  margin-bottom: 2rem;
+}
+
+.checkout .input-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.checkout label {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+
+.checkout input {
+  padding: .5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.checkout-producto {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  box-shadow: 0 1px 10px #08a05c;
+  border-radius: 5px;
+}
+
+.checkout-producto h3,
+.checkout-producto p {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+  font-family: Helvetica, sans-serif;
+}
+
+.checkout button {
+  padding: 1rem 2rem;
+  background-color: #08a05c;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.checkout button:hover {
+  background-color: #0f5c39;
+}
+
+/*----------------COOKIE BANNER----------------*/
+.cookie-banner {
+  max-width: 1550px;
+  margin: 0 auto;
+  padding: 0 15px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: #e41414;
+  color: white;
+  text-align: center;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.cookie-banner button {
+  color: white;
+  background-color: #08a05c;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/*----------------APARTADO LEGAL----------------*/
+
+.apartado-legal {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 8rem;
+  color: #08a05c;
+}
+
+.apartado-legal h1 {
+  font-size: 2rem;
+}
+
+.apartado-legal h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.apartado-legal p {
+  margin-bottom: 1rem;
+}
+
+.apartado-legal ul {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.apartado-legal li {
+  margin-bottom: 0.5rem;
+}
+
+.apartado-legal a {
+  color: #08a05c;
+  text-decoration: none;
+}
+
+.apartado-legal a:hover {
+  text-decoration: underline;
+}
+
+/*----------------FOOTER----------------*/
+footer {
+  width: 100%;
+  min-height: 70px; 
+  max-width: 1530px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #e41414;
+  box-shadow: 0 -5px 10px #08a05c50; 
+  position: static;
+  bottom: 0;
+  flex-shrink: 0;
+  z-index: 999; 
+}
+
+footer p, footer a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 0 1rem;
+}
+
+footer a:hover {
+  color: #08a05c;
+}
+
+footer a {
+  font-weight: bold;
+}
 /*----------------MEDIA----------------*/
+@media only screen and (max-width: 1000px){
+  .carrito_item{
+    width: 92%;
+  }
+}
+
+@media only screen and (max-width: 700px){
+  .carrito{
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+  }
+  .carrito_item h3{
+    font-size: 1.2rem;
+  }
+  .cart {
+    display: flex; /* Muestra el icono del carrito en pantallas pequeñas */
+  }
+}
+
 @media only screen and (max-width: 600px){
   header ul{
     display: none;
+  }
+
+  .registro_nombre,
+  .registro_contrasena,
+  .registro_telefono,
+  .registro_correo,
+  .registro_fechaN {
+    flex-direction: column;
+    margin-bottom: 2rem; /* Aumenta el espacio entre los campos */
+  }
+
+  .registro_nombre label,
+  .registro_contrasena label,
+  .registro_telefono label,
+  .registro_correo label,
+  .registro_fechaN label {
+    font-size: 1.2rem; /* Aumenta el tamaño de la fuente de los labels */
+    text-align: center; /* Centra el texto en el label */
+  }
+
+  .registro_nombre input,
+  .registro_contrasena input,
+  .registro_telefono input,
+  .registro_correo input,
+  .registro_fechaN input {
+    width: 100%; /* Ajusta el ancho de los inputs al 100% */
+  }
+
+  .registro button {
+    margin-top: 1rem; /* Agrega un margen superior al botón */
+  }
+}
+
+@media only screen and (max-width: 450px){
+  .carrito_item h3{
+    display: .5rem;
   }
 }
