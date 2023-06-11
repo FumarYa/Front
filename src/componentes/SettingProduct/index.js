@@ -25,12 +25,20 @@ export const SettingProduct = () => {
   const handleAddSubmit = async (event) => {
     event.preventDefault();
     try {
-      await fetch('localhost:4000/api/producto/add', {
+      await fetch('http://localhost:4000/api/producto/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(producto)
       });
-      setProducto({nombre: producto.nombre, marca: producto.marca, descripcion: producto.descripcion, precio: producto.precio, tipo: producto.tipo, imagen: producto.imagen});
+      setProducto({
+        nombre: '',
+        marca: '',
+        descripcion: '',
+        precio: '',
+        tipo: '',
+        imagen: ''
+      });
+      alert("Producto añadido correctamente");
     } catch (error) {
       setError(error.message);
     }
@@ -39,10 +47,15 @@ export const SettingProduct = () => {
   const handleDeleteSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`localhost:4000/api/producto/nombre/${nombreEliminar}`);
-      const data = await response.json();
-      await fetch(`localhost:4000/api/producto/delete/${data.id}`, { method: 'DELETE' });
-      setNombreEliminar('');
+      const response = await fetch(`http://localhost:4000/api/producto/nombre/${nombreEliminar}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          const data = await response.json();
+          await fetch(`http://localhost:4000/api/producto/delete/${data[0].id}`, { method: 'DELETE' });
+          alert("Producto eliminado correctamente");
+          setNombreEliminar('');
+        }
     } catch (error) {
       setError(error.message);
     }
@@ -60,7 +73,6 @@ export const SettingProduct = () => {
         <input name='precio' value={producto.precio} onChange={handleChange} placeholder="Precio" required />
         <input name='tipo' value={producto.tipo} onChange={handleChange} placeholder="Tipo" required />
         <input name='imagen' value={producto.imagen} onChange={handleChange} placeholder="Imagen" required />
-        {/* Añadir los demás campos aquí de la misma manera */}
         <button type='submit'>Añadir Producto</button>
       </form>
       </div>

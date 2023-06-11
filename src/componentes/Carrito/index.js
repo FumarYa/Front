@@ -1,4 +1,5 @@
 import React, { useContext,useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { DataContext } from '../../context/Dataprovider'
 
 
@@ -75,7 +76,9 @@ export const Carrito = () => {
      
             <div className="carrito_footer">
                 <h3>Total: {total}€</h3>
-                <button className="btn">Pago</button>
+                <Link to= "/checkout">
+                <button className="btn" onClick={tooglefalse}>Pago</button>
+                </Link>
             </div>
      
     
