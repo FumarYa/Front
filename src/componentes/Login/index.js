@@ -11,6 +11,7 @@ export const Login = () => {
     const [contrasena, setContrasena] = useState("");
     const [isAuthenticated, setIsAuthenticated] = value.isAuthenticated;
     const [username, setUsername] = value.username;
+    const [role, setRole] = value.role;
     const navigate = useNavigate();
 
 
@@ -19,6 +20,7 @@ export const Login = () => {
 
     const tooglefalse = () =>{
         setMenuLogin(false);
+        setRole(" ");
     }
 
     const iniciarSesion = () => {
@@ -40,11 +42,26 @@ export const Login = () => {
           if(data === "El Usuario con su contraseña es correcta") {
             setIsAuthenticated(true);
             setUsername(nombre);
+            
+    
+            // Si el inicio de sesión es exitoso, realiza una segunda solicitud para obtener el rol del usuario
+            fetch('http://localhost:4000/api/usuarios/all', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+              .then(response => response.json())
+              .then(allUsers => {
+                const user = allUsers.find(user => user.nombre === nombre);
+                if (user.rol === "Admin") {
+                  setRole(user.rol);
+                }
+              });
             navigate("/");
             setMenuLogin(false);
           }
         })
-        
         .catch(error => console.error('Error:', error));
     };
 

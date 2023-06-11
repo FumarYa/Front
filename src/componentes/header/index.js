@@ -11,6 +11,7 @@ export const Header = () =>{
     const [loading]  = value.loading;
     const [isAuthenticated, setIsAuthenticated] = value.isAuthenticated;
     const [username, setUsername] = value.username;
+    const [role,setRole] = value.role;
 
 
     const toogleMenuCarrito = () =>{
@@ -23,6 +24,7 @@ export const Header = () =>{
 
     const logout = () => {
         setIsAuthenticated(false);
+        setRole(" ");
     };
 
     return (
@@ -39,7 +41,13 @@ export const Header = () =>{
             <li>
               <Link to="/productos">Productos</Link>
             </li>
+            {role === "Admin" &&
+              <li>
+              <Link to = "/configuraciones">Configuraciones</Link>
+              </li>
+              }
           </ul>
+          
           <div className="cart" onClick={toogleMenuCarrito}>
             <box-icon name="cart"></box-icon>
             <span className="item_total">{!loading ? carrito.length : ""}</span>
@@ -48,6 +56,7 @@ export const Header = () =>{
           {isAuthenticated ? (
             <>
               <div className="username">
+              
                 <h2>{username}</h2>
               </div>
     
