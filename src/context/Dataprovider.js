@@ -7,11 +7,13 @@ export const Dataprovider = ({ children }) => {
     const [menuCarrito,setMenuCarrito] = useState(false);
     const [menuLogin,setMenuLogin] = useState(false);
     const [state, fetchProductos] = useFetch();
+    const [todosProductos, setTodosProductos] = useState(null);
     const[carrito,setCarrito] = useState([]);
     const [loading, setLoading] = useState(true);
     const [cookiesAccepted, setCookiesAccepted] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState();
+    const [role, setRole] = useState("");
 
     useEffect(
       function () {
@@ -23,6 +25,12 @@ export const Dataprovider = ({ children }) => {
       },
       [fetchProductos]
     );
+
+    useEffect(() => {
+      if (state.isSuccess) {
+        setTodosProductos(state.data);
+      }
+    }, [state]);
 
     
     useEffect(() => {
@@ -111,11 +119,20 @@ export const Dataprovider = ({ children }) => {
       }
     }, [isAuthenticated]);
 
+    //Funcion para buscar productos
+    const buscarProductos = (nombre) => {
+      fetchProductos({
+          url: `http://localhost:4000/api/producto/nombre/${nombre}`,
+          method: "GET",
+      });
+  }
+
     //Valores del contexto
     const value = {
         menuCarrito: [menuCarrito,setMenuCarrito],
         menuLogin: [menuLogin,setMenuLogin],
         productos: state, // Aquí añadimos los productos al contexto.
+        todosProductos: [todosProductos, setTodosProductos],
         carrito: [carrito,setCarrito],
         addCarrito: addCarrito,
         incrementarCantidad: incrementarCantidad,
@@ -126,6 +143,8 @@ export const Dataprovider = ({ children }) => {
         isAuthenticated: [isAuthenticated, setIsAuthenticated],
         username: [username, setUsername],
         loading: [loading, setLoading], // añade loading al contexto
+        buscarProductos: buscarProductos,
+        role: [role, setRole],
     }
   
   return (

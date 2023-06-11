@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,useEffect} from 'react';
 import { Header } from './componentes/Header';
 import 'boxicons';
 import { BrowserRouter as Router} from "react-router-dom"
@@ -10,20 +10,23 @@ import { Login } from './componentes/Login';
 
 
 
+
 function App() {
-  const {acceptCookies,cookiesAccepted} = useContext(DataContext);
+  const {acceptCookies, cookiesAccepted } = useContext(DataContext);
+  const value = useContext(DataContext);
+  
   return (
-  <Dataprovider>
-    <div className="App">
-    {!cookiesAccepted && <CookieBanner acceptCookies={acceptCookies} />}
-      <Router>
-      <Header />
-      <Carrito /> 
-      <Login />
-      <Paginas />
-      </Router>
-    </div>
-  </Dataprovider>
+    <Dataprovider>
+      <div className="App">
+        {!cookiesAccepted && <CookieBanner acceptCookies={acceptCookies} />}
+        <Router>
+          <Header />
+          <Carrito /> 
+          <Login />
+          <Paginas />
+        </Router>
+      </div>
+    </Dataprovider>
   );
 }
 
