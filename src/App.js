@@ -14,7 +14,6 @@ import Footer from './componentes/Footer';
 
 function App() {
   const {acceptCookies, cookiesAccepted } = useContext(DataContext);
-  const value = useContext(DataContext);
   
   return (
     <Dataprovider>

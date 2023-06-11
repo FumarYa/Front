@@ -31,12 +31,6 @@ export const ProductoDetalles = () => {
             <p>
               <b>Descripcion:</b>
               {detalle.descripcion}
-              <br />
-              sadnlnjfninadvndsnvinajilvnjdsnjvbdjvbkcvjdsbcboihbsvhbsHBdhs
-              vjlsb cakjbcvgubxHUCBhaBcilbxLHDBVLb hbdulbcul bullb
-              oADSBvobdhovbDCBHObuOE oibidovhoewV DBihcpvidnaijbu8bfpu
-              UqhiadHviDBVHFIPCdbvbviphbvoibipvbidsb
-              adohbadwodbvkboihbEIFBCbjBVIDOBViueijciDFOipj
             </p>
           </div>
 
