@@ -2,7 +2,7 @@
 FROM node:12.19.0-alpine as build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --only=production
 COPY . .
 RUN npm run build
 
