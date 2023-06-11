@@ -1,0 +1,43 @@
+version: '3'
+services:
+  dbfumarya:
+    image: castaan/bbdd:latest
+    container_name: dbfumarya
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: FumarYa2@23
+      MYSQL_DATABASE: fumarya
+      MYSQL_USER: fumarya
+      MYSQL_PASSWORD: FumarYa2@23
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql
+  apifumarya:
+    image: castaan/api:latest
+    container_name: apifumarya
+    ports:
+      - "4000:4000"
+    depends_on:
+      - dbfumarya
+    environment:
+      DB_HOST: dbfumarya
+      DB_USER: fumarya
+      DB_PASSWORD: FumarYa2@23
+      DB_PORT: "3306"
+    healthcheck:
+      test: ["CMD-SHELL", "sleep 5s && curl -f http://localhost:4000 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+  frontfumarya:
+    image: fumarya/front:latest
+    container_name: frontfumarya
+    ports:
+      - "80:80"
+    depends_on:
+      - apifumarya
+      - dbfumarya
+    
+volumes:
+  db_data:
